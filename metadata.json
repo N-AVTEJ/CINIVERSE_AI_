@@ -1,0 +1,8 @@
+{
+  "name": "CINEVERSE AI",
+  "description": "The Future of Movie Discovery - A cinematic storytelling interactive movie experience.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
