@@ -26,7 +26,7 @@ export const MovieUniverse = () => {
         trigger: containerRef.current,
         start: "top top",
         end: "bottom bottom",
-        scrub: 1.5,
+        scrub: 0.5,
       }
     });
     
@@ -48,7 +48,7 @@ export const MovieUniverse = () => {
   return (
     <section 
       ref={containerRef}
-      className="relative h-[400vh] w-full bg-[#020202]"
+      className="relative h-[150vh] sm:h-[180vh] w-full bg-[#020202]"
     >
       <div className="sticky top-0 h-screen w-full overflow-hidden" style={{ perspective: "1500px" }}>
         

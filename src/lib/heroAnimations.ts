@@ -45,7 +45,7 @@ export const createHeroScrollTimeline = (container: HTMLElement) => {
       trigger: container,
       start: "top top",
       end: "bottom top",
-      scrub: 1.5,
+      scrub: 0.5,
     },
   });
 

@@ -23,9 +23,9 @@ export const TimelineScene = () => {
     // Camera movement
     const targetPos = calculateCameraPosition(progress, maxZ);
     
-    camera.position.z = THREE.MathUtils.lerp(camera.position.z, targetPos.z, delta * 3);
-    camera.position.x = THREE.MathUtils.lerp(camera.position.x, targetPos.x, delta * 2);
-    camera.position.y = THREE.MathUtils.lerp(camera.position.y, targetPos.y, delta * 2);
+    camera.position.z = THREE.MathUtils.lerp(camera.position.z, targetPos.z, delta * 8);
+    camera.position.x = THREE.MathUtils.lerp(camera.position.x, targetPos.x, delta * 6);
+    camera.position.y = THREE.MathUtils.lerp(camera.position.y, targetPos.y, delta * 6);
     
     camera.lookAt(camera.position.x * 0.5, camera.position.y * 0.5, camera.position.z - 40);
 

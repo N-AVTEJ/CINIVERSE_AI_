@@ -28,7 +28,7 @@ export const PredictionChamber = () => {
         trigger: containerRef.current,
         start: "top top",
         end: "bottom bottom",
-        scrub: 1.5,
+        scrub: 0.5,
         onUpdate: (self) => {
           const p = self.progress;
           setProgress(p);
@@ -53,7 +53,7 @@ export const PredictionChamber = () => {
   return (
     <section 
       ref={containerRef}
-      className="relative w-full h-[500vh] bg-[#020202]"
+      className="relative w-full h-[160vh] sm:h-[180vh] bg-[#020202]"
     >
       <div className="sticky top-0 h-screen w-full overflow-hidden pointer-events-auto">
         <Canvas gl={{ antialias: true, alpha: false }} dpr={[1, 2]}>

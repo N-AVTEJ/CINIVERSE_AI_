@@ -13,7 +13,7 @@ export const HeroScene = () => {
   return (
     <section 
       ref={containerRef}
-      className="hero-container relative h-[150vh] w-full bg-[#050505]"
+      className="hero-container relative h-[120vh] sm:h-[135vh] w-full bg-[#050505]"
     >
       <div className="sticky top-0 h-screen w-full overflow-hidden">
         <HeroParallax>

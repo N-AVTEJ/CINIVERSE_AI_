@@ -19,7 +19,7 @@ class CinematicEngine {
         trigger: document.body,
         start: "top top",
         end: "bottom bottom",
-        scrub: 1.5,
+        scrub: 0.5,
       }
     });
 

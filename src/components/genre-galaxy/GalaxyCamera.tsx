@@ -42,7 +42,7 @@ export const GalaxyCamera = ({ scrollProgress }: GalaxyCameraProps) => {
       const targetX = Math.sin(progress * Math.PI * 2) * 20;
       const targetY = Math.cos(progress * Math.PI * 1.5) * 10;
 
-      camera.position.lerp(new THREE.Vector3(targetX, targetY, targetZ), delta * 2);
+      camera.position.lerp(new THREE.Vector3(targetX, targetY, targetZ), delta * 6);
       
       // Look straight ahead with a slight drift
       const lookTarget = new THREE.Vector3(

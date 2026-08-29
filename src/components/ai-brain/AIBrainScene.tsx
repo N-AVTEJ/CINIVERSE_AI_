@@ -40,7 +40,7 @@ export const AIBrainScene = () => {
         trigger: containerRef.current,
         start: "top top",
         end: "bottom bottom",
-        scrub: 1.5,
+        scrub: 0.5,
       }
     });
 
@@ -59,7 +59,7 @@ export const AIBrainScene = () => {
   return (
     <section 
       ref={containerRef}
-      className="relative w-full h-[300vh] bg-[#020202]"
+      className="relative w-full h-[140vh] sm:h-[160vh] bg-[#020202]"
     >
       <div className="sticky top-0 h-screen w-full overflow-hidden pointer-events-auto">
         <Canvas gl={{ antialias: true, alpha: false }} dpr={[1, 2]}>

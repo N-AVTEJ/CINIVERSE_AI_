@@ -29,7 +29,7 @@ export const MovieDNA = () => {
         trigger: containerRef.current,
         start: "top top",
         end: "bottom bottom",
-        scrub: 1.5,
+        scrub: 0.5,
         onUpdate: (self) => {
           const p = self.progress;
           setProgress(p);
@@ -40,7 +40,7 @@ export const MovieDNA = () => {
           let activeId: string | null = null;
           
           for (const attr of dnaAttributesData) {
-            if (Math.abs(currentY - attr.positionY) < 5) {
+            if (Math.abs(currentY - attr.positionY) < 12) {
               activeId = attr.id;
               break;
             }
@@ -56,7 +56,7 @@ export const MovieDNA = () => {
   return (
     <section 
       ref={containerRef}
-      className="relative w-full h-[500vh] bg-[#020202]"
+      className="relative w-full h-[160vh] sm:h-[180vh] bg-[#020202]"
     >
       <div className="sticky top-0 h-screen w-full overflow-hidden pointer-events-auto">
         <Canvas gl={{ antialias: true, alpha: false }} dpr={[1, 2]}>

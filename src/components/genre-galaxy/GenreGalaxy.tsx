@@ -26,7 +26,7 @@ export const GenreGalaxy = () => {
         trigger: containerRef.current,
         start: "top top",
         end: "bottom bottom",
-        scrub: 1.5,
+        scrub: 0.5,
       }
     });
 
@@ -41,7 +41,7 @@ export const GenreGalaxy = () => {
   return (
     <section 
       ref={containerRef}
-      className="relative w-full h-[400vh] bg-[#020202]"
+      className="relative w-full h-[150vh] sm:h-[180vh] bg-[#020202]"
     >
       <div className="sticky top-0 h-screen w-full overflow-hidden pointer-events-auto">
         <Canvas gl={{ antialias: true, alpha: false }} dpr={[1, 2]}>

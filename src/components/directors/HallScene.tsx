@@ -43,9 +43,9 @@ export const HallScene = ({ progress }: HallSceneProps) => {
     } else if (!activeDirectorId && !isInsideWorld) {
       // Normal hallway scrolling
       const targetZ = maxZ * progress;
-      camera.position.z = THREE.MathUtils.lerp(camera.position.z, targetZ, delta * 3);
-      camera.position.x = THREE.MathUtils.lerp(camera.position.x, 0, delta * 2);
-      camera.position.y = THREE.MathUtils.lerp(camera.position.y, 5, delta * 2);
+      camera.position.z = THREE.MathUtils.lerp(camera.position.z, targetZ, delta * 8);
+      camera.position.x = THREE.MathUtils.lerp(camera.position.x, 0, delta * 6);
+      camera.position.y = THREE.MathUtils.lerp(camera.position.y, 5, delta * 6);
       camera.lookAt(0, 5, camera.position.z - 40);
       
       if (whiteScreenRef.current) {

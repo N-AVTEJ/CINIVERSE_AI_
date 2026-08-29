@@ -15,7 +15,7 @@ export const TimelineOfCinema = () => {
   }, [progress, setProgress]);
 
   return (
-    <section className="relative h-[600vh] w-full bg-[#020202]">
+    <section className="relative h-[160vh] sm:h-[180vh] w-full bg-[#020202]">
       <div className="sticky top-0 h-screen w-full overflow-hidden">
         <Canvas gl={{ antialias: true, alpha: false }} dpr={[1, 2]}>
           <TimelineScene />

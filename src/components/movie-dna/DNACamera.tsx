@@ -36,14 +36,14 @@ export const DNACamera = () => {
     targetRotation.current = progress * Math.PI;
 
     // Smooth camera position
-    camera.position.y = THREE.MathUtils.lerp(camera.position.y, targetY.current, delta * 3);
+    camera.position.y = THREE.MathUtils.lerp(camera.position.y, targetY.current, delta * 8);
     
     // Parallax effect
     const parallaxX = mouse.current.x * 2;
     const parallaxY = mouse.current.y * 2;
     
-    camera.position.x = THREE.MathUtils.lerp(camera.position.x, parallaxX, delta * 2);
-    camera.position.z = THREE.MathUtils.lerp(camera.position.z, targetZ.current + parallaxY, delta * 2);
+    camera.position.x = THREE.MathUtils.lerp(camera.position.x, parallaxX, delta * 6);
+    camera.position.z = THREE.MathUtils.lerp(camera.position.z, targetZ.current + parallaxY, delta * 6);
     
     // Look at center slightly ahead
     const lookAtTarget = new THREE.Vector3(

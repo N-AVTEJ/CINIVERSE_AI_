@@ -65,7 +65,7 @@ export default function App() {
           </SceneController>
           
           <SceneController id="future">
-            <section className="min-h-screen flex items-center justify-center border-t border-cine-border/30">
+            <section className="py-16 flex items-center justify-center border-t border-cine-border/30">
               <h2 className="font-heading text-3xl text-cine-muted/50 italic tracking-widest">
                 More experiences loading...
               </h2>

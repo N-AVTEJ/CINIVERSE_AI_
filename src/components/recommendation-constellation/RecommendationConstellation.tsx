@@ -28,7 +28,7 @@ export const RecommendationConstellation = () => {
         trigger: containerRef.current,
         start: "top top",
         end: "bottom bottom",
-        scrub: 1.5,
+        scrub: 0.5,
         onUpdate: (self) => {
           setProgress(self.progress);
         }
@@ -41,7 +41,7 @@ export const RecommendationConstellation = () => {
   return (
     <section 
       ref={containerRef}
-      className="relative w-full h-[600vh] bg-[#000000]"
+      className="relative w-full h-[160vh] sm:h-[190vh] bg-[#000000]"
     >
       <div className="sticky top-0 h-screen w-full overflow-hidden pointer-events-auto">
         <Canvas gl={{ antialias: true, alpha: false, powerPreference: "high-performance" }} dpr={[1, 2]}>

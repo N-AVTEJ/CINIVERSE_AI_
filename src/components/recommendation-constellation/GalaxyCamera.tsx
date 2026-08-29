@@ -41,17 +41,17 @@ export const GalaxyCamera = () => {
       const x = Math.sin(angle) * 20;
       const z = baseZ + Math.cos(angle) * 10;
       
-      currentPos.current.lerp(new THREE.Vector3(x, 0, z), delta);
-      lookAtTarget.current.lerp(new THREE.Vector3(0, 0, baseZ - 30), delta);
+      currentPos.current.lerp(new THREE.Vector3(x, 0, z), delta * 6);
+      lookAtTarget.current.lerp(new THREE.Vector3(0, 0, baseZ - 30), delta * 6);
     }
 
     // Apply mouse parallax
     const parallaxX = mouse.current.x * (cameraTarget ? 1 : 5);
     const parallaxY = mouse.current.y * (cameraTarget ? 1 : 5);
 
-    camera.position.x = THREE.MathUtils.lerp(camera.position.x, currentPos.current.x + parallaxX, delta * 3);
-    camera.position.y = THREE.MathUtils.lerp(camera.position.y, currentPos.current.y + parallaxY, delta * 3);
-    camera.position.z = THREE.MathUtils.lerp(camera.position.z, currentPos.current.z, delta * 3);
+    camera.position.x = THREE.MathUtils.lerp(camera.position.x, currentPos.current.x + parallaxX, delta * 8);
+    camera.position.y = THREE.MathUtils.lerp(camera.position.y, currentPos.current.y + parallaxY, delta * 8);
+    camera.position.z = THREE.MathUtils.lerp(camera.position.z, currentPos.current.z, delta * 8);
 
     camera.lookAt(lookAtTarget.current);
   });

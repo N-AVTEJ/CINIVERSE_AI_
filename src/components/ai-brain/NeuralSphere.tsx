@@ -36,9 +36,9 @@ export const NeuralSphere = ({ scrollCameraTarget }: NeuralSphereProps) => {
     const targetX = Math.sin(target.orbit) * orbitRadius;
     const targetZ = Math.cos(target.orbit) * orbitRadius;
     
-    camera.position.x = THREE.MathUtils.lerp(currentX, targetX, 0.05);
-    camera.position.z = THREE.MathUtils.lerp(currentZ, targetZ, 0.05);
-    camera.position.y = THREE.MathUtils.lerp(camera.position.y, Math.sin(target.orbit * 2) * 5, 0.05);
+    camera.position.x = THREE.MathUtils.lerp(currentX, targetX, 0.15);
+    camera.position.z = THREE.MathUtils.lerp(currentZ, targetZ, 0.15);
+    camera.position.y = THREE.MathUtils.lerp(camera.position.y, Math.sin(target.orbit * 2) * 5, 0.15);
     
     camera.lookAt(0, 0, 0);
   });
