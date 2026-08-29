@@ -7,9 +7,13 @@ interface DNAAnimationState {
   setActiveAttributeId: (id: string | null) => void;
 }
 
-export const useDNAAnimation = create<DNAAnimationState>((set) => ({
+export const useDNAAnimation = create<DNAAnimationState>((set, get) => ({
   progress: 0,
-  setProgress: (progress) => set({ progress }),
+  setProgress: (progress) => {
+    if (Math.abs(get().progress - progress) > 0.001) set({ progress });
+  },
   activeAttributeId: null,
-  setActiveAttributeId: (id) => set({ activeAttributeId: id }),
+  setActiveAttributeId: (id) => {
+    if (get().activeAttributeId !== id) set({ activeAttributeId: id });
+  },
 }));

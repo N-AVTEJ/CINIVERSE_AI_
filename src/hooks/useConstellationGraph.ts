@@ -12,21 +12,27 @@ interface ConstellationState {
   setCameraTarget: (target: [number, number, number] | null) => void;
 }
 
-export const useConstellationGraph = create<ConstellationState>((set) => ({
+export const useConstellationGraph = create<ConstellationState>((set, get) => ({
   progress: 0,
-  setProgress: (progress) => set({ progress }),
+  setProgress: (progress) => {
+    if (Math.abs(get().progress - progress) > 0.001) set({ progress });
+  },
   selectedMovieId: null,
   setSelectedMovieId: (id) => {
-    set({ selectedMovieId: id });
-    if (id) {
-      const movie = movieUniverseData.find(m => m.id === id);
-      if (movie) {
-        set({ cameraTarget: movie.coordinates });
+    if (get().selectedMovieId !== id) {
+      set({ selectedMovieId: id });
+      if (id) {
+        const movie = movieUniverseData.find(m => m.id === id);
+        if (movie) {
+          set({ cameraTarget: movie.coordinates });
+        }
       }
     }
   },
   hoveredMovieId: null,
-  setHoveredMovieId: (id) => set({ hoveredMovieId: id }),
+  setHoveredMovieId: (id) => {
+    if (get().hoveredMovieId !== id) set({ hoveredMovieId: id });
+  },
   cameraTarget: null,
   setCameraTarget: (target) => set({ cameraTarget: target }),
 }));

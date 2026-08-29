@@ -53,13 +53,17 @@ export const useEmotionSelection = create<EmotionSelectionState>((set) => ({
 
   clearEmotions: () => set({ selectedEmotionIds: [] }),
 
-  setHoveredEmotion: (id) => set({ hoveredEmotionId: id }),
+  setHoveredEmotion: (id) =>
+    set((state) => (state.hoveredEmotionId === id ? state : { hoveredEmotionId: id })),
 
-  setActiveStep: (step) => set({ activeStep: step }),
+  setActiveStep: (step) =>
+    set((state) => (state.activeStep === step ? state : { activeStep: step })),
 
-  setFocusedMovieId: (id) => set({ focusedMovieId: id }),
+  setFocusedMovieId: (id) =>
+    set((state) => (state.focusedMovieId === id ? state : { focusedMovieId: id })),
 
-  setMultiEmotionMode: (enabled) => set({ multiEmotionMode: enabled }),
+  setMultiEmotionMode: (enabled) =>
+    set((state) => (state.multiEmotionMode === enabled ? state : { multiEmotionMode: enabled })),
 
   resetEngine: () =>
     set({

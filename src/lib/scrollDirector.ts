@@ -17,8 +17,11 @@ class ScrollDirector {
       start: "top bottom",
       end: "bottom top",
       onUpdate: (self) => {
-        this.sceneProgresses.set(id, self.progress);
-        window.dispatchEvent(new CustomEvent(`scene-progress-${id}`, { detail: self.progress }));
+        const prev = this.sceneProgresses.get(id) ?? -1;
+        if (Math.abs(prev - self.progress) > 0.001) {
+          this.sceneProgresses.set(id, self.progress);
+          window.dispatchEvent(new CustomEvent(`scene-progress-${id}`, { detail: self.progress }));
+        }
       }
     });
   }
