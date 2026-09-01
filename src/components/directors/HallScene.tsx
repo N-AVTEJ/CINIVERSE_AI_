@@ -13,17 +13,17 @@ interface HallSceneProps {
 
 export const HallScene = ({ progress }: HallSceneProps) => {
   const { camera } = useThree();
-  const { activeDirectorId, isInsideWorld, cameraTransitionProgress, updateTransition } = useDirectorWorld(
+  const { activeDirectorId, isInsideWorld, completeTransition } = useDirectorWorld(
     useShallow(s => ({
       activeDirectorId: s.activeDirectorId,
       isInsideWorld: s.isInsideWorld,
-      cameraTransitionProgress: s.cameraTransitionProgress,
-      updateTransition: s.updateTransition
+      completeTransition: s.completeTransition
     }))
   );
 
   const activeDirector = directorData.find(d => d.id === activeDirectorId);
   const whiteScreenRef = useRef<THREE.MeshBasicMaterial>(null);
+  const transitionProgressRef = useRef(0);
 
   // Maximum distance down the hallway
   const maxZ = -200;
@@ -31,16 +31,21 @@ export const HallScene = ({ progress }: HallSceneProps) => {
   useFrame((state, delta) => {
     if (activeDirectorId && !isInsideWorld) {
       // Transitioning into a world
-      updateTransition(cameraTransitionProgress + delta * 0.5); // 2-second transition
+      transitionProgressRef.current = Math.min(1, transitionProgressRef.current + delta * 0.8);
 
       if (whiteScreenRef.current) {
-        whiteScreenRef.current.opacity = cameraTransitionProgress;
+        whiteScreenRef.current.opacity = transitionProgressRef.current;
       }
       
       // Move camera slightly forward during transition to simulate flying into portal
       camera.position.z -= delta * 10;
 
+      if (transitionProgressRef.current >= 1) {
+        completeTransition();
+      }
+
     } else if (!activeDirectorId && !isInsideWorld) {
+      transitionProgressRef.current = 0;
       // Normal hallway scrolling
       const targetZ = maxZ * progress;
       camera.position.z = THREE.MathUtils.lerp(camera.position.z, targetZ, delta * 8);

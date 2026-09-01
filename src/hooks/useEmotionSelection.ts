@@ -47,11 +47,13 @@ export const useEmotionSelection = create<EmotionSelectionState>((set) => ({
     }),
 
   selectSingleEmotion: (id) =>
-    set({
-      selectedEmotionIds: [id],
+    set((state) => {
+      if (state.selectedEmotionIds.length === 1 && state.selectedEmotionIds[0] === id) return state;
+      return { selectedEmotionIds: [id] };
     }),
 
-  clearEmotions: () => set({ selectedEmotionIds: [] }),
+  clearEmotions: () =>
+    set((state) => (state.selectedEmotionIds.length === 0 ? state : { selectedEmotionIds: [] })),
 
   setHoveredEmotion: (id) =>
     set((state) => (state.hoveredEmotionId === id ? state : { hoveredEmotionId: id })),

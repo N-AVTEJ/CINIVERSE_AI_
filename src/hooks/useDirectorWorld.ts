@@ -3,27 +3,29 @@ import { create } from "zustand";
 interface DirectorWorldState {
   activeDirectorId: string | null;
   isInsideWorld: boolean;
-  cameraTransitionProgress: number; // 0 to 1
   enterWorld: (id: string) => void;
   leaveWorld: () => void;
-  updateTransition: (progress: number) => void;
+  completeTransition: () => void;
 }
 
-export const useDirectorWorld = create<DirectorWorldState>((set) => ({
+export const useDirectorWorld = create<DirectorWorldState>((set, get) => ({
   activeDirectorId: null,
   isInsideWorld: false,
-  cameraTransitionProgress: 0,
   
   enterWorld: (id) => {
-    set({ activeDirectorId: id, cameraTransitionProgress: 0 });
-    // Simulate camera fly-in over time in the hook, or let the component do it.
-    // The component will drive updateTransition.
+    if (get().activeDirectorId !== id || get().isInsideWorld) {
+      set({ activeDirectorId: id, isInsideWorld: false });
+    }
   },
-  leaveWorld: () => set({ activeDirectorId: null, isInsideWorld: false, cameraTransitionProgress: 0 }),
-  updateTransition: (progress) => {
-    set({ cameraTransitionProgress: progress });
-    if (progress >= 1) {
+  leaveWorld: () => {
+    if (get().activeDirectorId !== null || get().isInsideWorld) {
+      set({ activeDirectorId: null, isInsideWorld: false });
+    }
+  },
+  completeTransition: () => {
+    if (!get().isInsideWorld) {
       set({ isInsideWorld: true });
     }
   }
 }));
+

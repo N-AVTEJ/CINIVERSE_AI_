@@ -5,21 +5,21 @@ import { useEraTransition } from "../../hooks/useEraTransition";
 import { useShallow } from "zustand/react/shallow";
 
 export const EraTransition = () => {
-  const { isTransitioning, transitionProgress, transitionType, updateProgress } = useEraTransition(
+  const { isTransitioning, transitionType, endTransition } = useEraTransition(
     useShallow(s => ({ 
       isTransitioning: s.isTransitioning, 
-      transitionProgress: s.transitionProgress,
       transitionType: s.transitionType,
-      updateProgress: s.updateProgress
+      endTransition: s.endTransition
     }))
   );
   
   const meshRef = useRef<THREE.Mesh>(null);
   const materialRef = useRef<THREE.MeshBasicMaterial>(null);
+  const transitionProgressRef = useRef(1);
 
   useFrame((state, delta) => {
     if (isTransitioning) {
-      updateProgress(delta);
+      transitionProgressRef.current = Math.max(0, transitionProgressRef.current - delta * 1.5);
       
       if (meshRef.current) {
         // Place in front of camera
@@ -30,7 +30,7 @@ export const EraTransition = () => {
       
       if (materialRef.current) {
         const baseOpacity = transitionType === 'film-burn' || transitionType === 'projector-flash' ? 0.8 : 0.3;
-        materialRef.current.opacity = transitionProgress * baseOpacity;
+        materialRef.current.opacity = transitionProgressRef.current * baseOpacity;
         
         switch (transitionType) {
           case 'film-burn': materialRef.current.color.set("#ff5500"); break;
@@ -40,6 +40,13 @@ export const EraTransition = () => {
           default: materialRef.current.color.set("#ffffff"); break;
         }
       }
+
+      if (transitionProgressRef.current <= 0) {
+        endTransition();
+        transitionProgressRef.current = 1;
+      }
+    } else {
+      transitionProgressRef.current = 1;
     }
   });
 

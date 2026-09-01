@@ -10,6 +10,8 @@ import { TimelineOfCinema } from "./components/timeline/TimelineOfCinema";
 import { DirectorHall } from "./components/directors/DirectorHall";
 import { EmotionEngine } from "./components/emotion-engine/EmotionEngine";
 import { CinematicMovieShowcase } from "./components/movie-showcase/CinematicMovieShowcase";
+import { EmotionMap } from "./components/emotion-map/EmotionMap";
+import { MemoryVault } from "./components/memory-vault/MemoryVault";
 import { LoaderProvider } from "./context/LoaderContext";
 import { CameraRig } from "./components/animations/CameraRig";
 import { SceneController } from "./components/animations/SceneController";
@@ -62,6 +64,14 @@ export default function App() {
 
           <SceneController id="movie-showcase">
             <CinematicMovieShowcase />
+          </SceneController>
+
+          <SceneController id="emotion-map">
+            <EmotionMap />
+          </SceneController>
+
+          <SceneController id="memory-vault">
+            <MemoryVault />
           </SceneController>
           
           <SceneController id="future">
